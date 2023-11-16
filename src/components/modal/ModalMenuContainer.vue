@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <div class="ui raised link card">
-            <P>Hjälpmeny
+            <P class="header"> Hjälpmeny
             <button class="ui button" @click="closeModal">Stäng X</button>
         </P>
             <div class="ui accordion">
@@ -9,17 +9,20 @@
                     <i class="dropdown icon"></i>
                     Support
                 </div>
-                <div class="content">
-                    <p>Öppna Chatten</p>
-                    <p>Till Support Sidan</p>
-                    <p>Till Frågor och Svar</p>
+                <div class="content dark-grey">
+                    <p> <i class="rocketchat icon"></i> Öppna Chatten </p>
+                    <p><i class="headphones icon"></i> Till Support Sidan</p>
+                    <p><i class="question circle icon"></i> Till Frågor och Svar</p>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
                     Tillgänglighet
                 </div>
-                <div class="content">
-                    <p>Ljud</p>
+                <div class="content dark-grey">
+                    <div class="ui toggle checkbox">
+                        <input type="checkbox" name="sound" v-model="sound" />
+                        <label>Ljud</label>
+                    </div>
                     <p>Monochrom färg</p>
                     <p>Stor text</p>
                     <p>High Contrast</p>
@@ -29,7 +32,7 @@
                     <i class="dropdown icon"></i>
                     Change Language
                 </div>
-                <div class="content">
+                <div class="content dark-grey">
                     <p>English</p>
                     <p>Svenska</p>
                 </div>
@@ -83,5 +86,15 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dark-grey {
+    background-color: #333;  /* parent component color */
+    color: #fff;
+}
+</style>
 ```

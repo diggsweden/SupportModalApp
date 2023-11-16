@@ -1,23 +1,29 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
+
+export default {
+  name: 'App',
+  components: {
+    ModalMenuContainer
+  }, 
+  mounted() {
+    console.log('App mounted')
+    this.emitter.emit('my-event', { some: 'data' });
+     this.emitter.on('postMessage', this.handlePostMessage);
+  },
+  beforeUnmount() {
+    this.emitter.off('postMessage', this.handlePostMessage);
+  },
+  methods: {
+    handlePostMessage(message) {
+      console.log(message);
+    }
+  }
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <ModalMenuContainer @postMessage="handlePostMessage" ></ModalMenuContainer>
 </template>
 
 <style scoped>

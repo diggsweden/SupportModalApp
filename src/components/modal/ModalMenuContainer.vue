@@ -14,6 +14,8 @@
 
 <script>
 import Accordion from './AccordianMenu.vue'
+import Items from '../../Items';
+
 export default {
     name: 'ModalMenuContainer',
     components: {
@@ -25,32 +27,7 @@ export default {
             isOpen: true,
             message: 'Hello from modal, via PostMessage',
             close: 'close modal',
-            items: [{
-                title: 'Support',
-                content: [
-                    { name: 'Öppna Chatten' },
-                    { name: 'Till Support Sidan' },
-                    { name: 'Till Frågor och Svar' }
-                ]
-            },
-            {
-                title: 'Tillgänglighet',
-                content: [
-                    { name: 'Ljud' },
-                    { name: 'Monochrom färg' },
-                    { name: 'Stor text' },
-                    { name: 'High Contrast' },
-                    { name: 'Text till tal' }
-                ]
-            },
-            {
-                title: 'Change Language',
-                content: [
-                    { name: 'English' },
-                    { name: 'Svenska' }
-                ]
-            }
-            ]
+            items: Items
         }
     },
     created() {

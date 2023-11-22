@@ -62,6 +62,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem;
 }
 
 .content {
@@ -84,7 +85,7 @@ export default {
 }
 
 .slide-fade-leave-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    
 }
 
 .slide-fade-enter,
@@ -92,17 +93,26 @@ export default {
     transform: translateX(10px);
     opacity: 0;
 }
+
 ul {
     list-style-type: none;
     padding-left: 10pt;
+    background-color: rgb(210, 243, 188);
 }
+
 li {
-    background-color: lightgray;
+    background-color: rgb(210, 243, 188);
     margin: 10px 0;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
-
+li:hover {
+    background-color: greenyellow;
+}
+.arrow {
+    color: green;
+    /* Add other styles as needed */
+}
 .accordion-item {
     margin: 15px 0;
     /* Add other styles as needed */

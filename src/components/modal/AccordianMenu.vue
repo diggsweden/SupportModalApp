@@ -58,11 +58,16 @@ export default {
 
 <style scoped>
 .title {
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+}
+
+.title:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .content {
@@ -95,19 +100,22 @@ export default {
 }
 
 ul {
+    
     list-style-type: none;
     padding-left: 10pt;
-    background-color: rgb(210, 243, 188);
+    background-color: rgb(178, 182, 175);
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
 }
 
 li {
-    background-color: rgb(210, 243, 188);
+    font-size: 16px;
+    background-color: rgb(178, 182, 175);
     margin: 10px 0;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
 li:hover {
-    background-color: greenyellow;
+    background-color: rgb(125, 128, 122);
 }
 .arrow {
     color: green;

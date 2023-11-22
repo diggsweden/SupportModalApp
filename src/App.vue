@@ -1,3 +1,8 @@
+<template>
+  <ModalMenuContainer @postMessage="handlePostMessage" ></ModalMenuContainer>
+</template>
+
+
 <script>
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 
@@ -7,8 +12,7 @@ export default {
     ModalMenuContainer
   }, 
   mounted() {
-    console.log('App mounted')
-    this.emitter.emit('my-event', { some: 'data' });
+    console.log('App: App mounted')
      this.emitter.on('postMessage', this.handlePostMessage);
   },
   beforeUnmount() {
@@ -20,11 +24,11 @@ export default {
     }
   }
 };
+
+
 </script>
 
-<template>
-  <ModalMenuContainer @postMessage="handlePostMessage" ></ModalMenuContainer>
-</template>
+
 
 <style scoped>
 header {

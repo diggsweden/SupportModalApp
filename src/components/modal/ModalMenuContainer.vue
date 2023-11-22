@@ -1,59 +1,79 @@
 <template>
     <div class="modal">
-        <div class="ui raised link card">
-            <P class="header"> Hjälpmeny
-            <button class="ui button" @click="closeModal">Stäng X</button>
-        </P>
-            <div class="ui accordion">
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Support
-                </div>
-                <div class="content dark-grey">
-                    <p> <i class="rocketchat icon"></i> Öppna Chatten </p>
-                    <p><i class="headphones icon"></i> Till Support Sidan</p>
-                    <p><i class="question circle icon"></i> Till Frågor och Svar</p>
-                </div>
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Tillgänglighet
-                </div>
-                <div class="content dark-grey">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="sound" v-model="sound" />
-                        <label>Ljud</label>
-                    </div>
-                    <p>Monochrom färg</p>
-                    <p>Stor text</p>
-                    <p>High Contrast</p>
-                    <p>Text till tal</p>
-                </div>
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Change Language
-                </div>
-                <div class="content dark-grey">
-                    <p>English</p>
-                    <p>Svenska</p>
-                </div>
+        <div class="raised-card">
+            <div class="modal-header">
+               <h3> Hjälpmeny </h3>
+                <button @click="closeModal">Stäng X</button>
+            </div>
+            <div>
+                <Accordion :items="items" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Accordion from './AccordianMenu.vue'
 export default {
     name: 'ModalMenuContainer',
+    components: {
+        Accordion
+    },
     data() {
         return {
             showModal: true,
             isOpen: true,
-            message: 'Hello from modal, via PostMessage'
+            message: 'Hello from modal, via PostMessage',
+            close: 'close modal',
+            items: [{
+                title: 'Support',
+                content: [
+                    { name: 'Öppna Chatten' },
+                    { name: 'Till Support Sidan' },
+                    { name: 'Till Frågor och Svar' }
+                ]
+            },
+            {
+                title: 'Tillgänglighet',
+                content: [
+                    { name: 'Ljud' },
+                    { name: 'Monochrom färg' },
+                    { name: 'Stor text' },
+                    { name: 'High Contrast' },
+                    { name: 'Text till tal' }
+                ]
+            },
+            {
+                title: 'Change Language',
+                content: [
+                    { name: 'English' },
+                    { name: 'Svenska' }
+                ]
+            }
+            ]
         }
+    },
+    created() {
+        window.addEventListener('message', this.receiveMessage, false);
+
     },
     methods: {
         postMessage() {
-            this.$emit('postMessage', this.message);
+            this.$emit('postMessage', this.close);
+        },
+        receiveMessage(event) {
+            console.log(event.data);
+            switch (event.data) {
+                case 'openModal':
+                    this.show = true;
+                    break;
+                case 'closeModal':
+                    this.show = false;
+                    break;
+                case 'toggleDarkMode':
+                    this.toggleDarkMode();
+                    break;
+            }
         },
         handlePostMessage(message) {
             console.log(message);
@@ -68,18 +88,23 @@ export default {
                 default:
                     console.log('default');
             }
+        },
+        closeModal() {
+            this.showModal = false;
         }
     },
     mounted() {
-        console.log('mounted')
+        console.log('Module: mounted')
         $('.ui.accordion').accordion()
         this.postMessage();
-    }, closeModal() {
+    },
+    closeModal() {
         console.log('close modal')
         this.showModal = false;
-        window.parent.postMessage('close', '*');
-        this.$emit('closeModal');
-    }, openModal() {
+        window.parent.postMessage('closeModal', '*');
+        this.$emit('postMesssage', 'closeModal');
+    },
+    openModal() {
         console.log('open modal')
         this.$emit('openModal');
     }
@@ -92,9 +117,50 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
+
 .dark-grey {
-    background-color: #333;  /* parent component color */
+    background-color: #4c614d;
+    /* parent component color */
     color: #fff;
+}
+
+.raised-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* Add other styles as needed */
+}
+.modal {
+    width: 300px;
+    height: auto;
+}
+.title {
+    cursor: pointer;
+    margin: 10px 0;
+  
+}
+.modal-header {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    
+}
+.modal-header h1 {
+    font-weight: bold;
+    
+}
+.modal-header button {
+    position: absolute;
+    right: 10px;
+}
+
+.accordion {
+    margin: 10px 0;
+    /* Add other styles as needed */
 }
 </style>
 ```

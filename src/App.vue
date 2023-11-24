@@ -1,5 +1,5 @@
 <template>
-  <ModalMenuContainer @postMessage="handlePostMessage" ></ModalMenuContainer>
+  <ModalMenuContainer :message="message" @postMessage="handlePostMessage" ></ModalMenuContainer>
 </template>
 
 
@@ -11,18 +11,44 @@ export default {
   components: {
     ModalMenuContainer
   }, 
-  mounted() {
-    console.log('App: App mounted')
-     this.emitter.on('postMessage', this.handlePostMessage);
+  data() {
+    return {
+      show: true,
+      isDarkMode: false,
+      message: 'close modal'
+    }
   },
-  beforeUnmount() {
-    this.emitter.off('postMessage', this.handlePostMessage);
+  created() {
+    window.addEventListener('message', this.receiveMessage, false);
   },
   methods: {
-    handlePostMessage(message) {
-      console.log(message);
+    receiveMessage(event) {
+      console.log(event.data);
+      switch(event.data) {
+        case 'openModal':
+          this.show = true;
+          break;
+        case 'closeModal':
+          this.show = false;
+          break;
+        case 'toggleDarkMode':
+          this.toggleDarkMode();
+          break;
+      }
+    },
+    closeModal() {
+      this.show = false;
+      window.parent.postMessage('closeModal', '*');
+    }, beforeDestroy() {
+      window.removeEventListener('message', this.receiveMessage);
+    },
+    toggleDarkMode() {
+      this.isDarkMode = !this.isDarkMode;
+      document.body.classList.toggle('dark', this.isDarkMode);
+      window.parent.postMessage('toggleDarkMode', '*');
     }
   }
+
 };
 
 

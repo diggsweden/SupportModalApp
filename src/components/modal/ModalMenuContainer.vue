@@ -21,11 +21,12 @@ export default {
     components: {
         Accordion
     },
+    props: ['message'],
     data() {
         return {
             showModal: true,
             isOpen: true,
-            message: 'Hello from modal, via PostMessage',
+            
             close: 'close modal',
             items: Items
         }

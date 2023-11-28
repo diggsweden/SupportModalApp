@@ -1,5 +1,5 @@
 <template>
-  <ModalMenuContainer :message="message" @childToParent="handleDataFromChild" @postMessage="receiveMessage"
+  <ModalMenuContainer @childToParent="handleDataFromChild" 
     @close="closeModal"></ModalMenuContainer>
 </template>
 
@@ -16,41 +16,23 @@ export default {
     return {
       show: false,
       isDarkMode: false,
-      message: 'closeModal'
     }
   },
-  created() {
-    window.addEventListener('message', this.receiveMessage, false);
-  },
-  beforeUnmount() {
-    window.removeEventListener('message', this.receiveMessage);
+  mounted() {
+    window.addEventListener('message', this.handleMessage);
   },
   unmounted() {
-    window.removeEventListener('message', this.receiveMessage);
+    window.removeEventListener('message', this.handleMessage);
   },
   methods: {
-    receiveMessage(event) {
-      console.log("recieveMessage():", event.data);
-      switch (event.data) {
-        case 'openModal':
-          this.show = true;
-          break;
-        case 'closeModal':
-          this.show = false;
-          //console.log("closeModal - in container");
-          this.closeModal();
-          break;
-        case 'toggleDarkMode':
-          //console.log("toggleDarkMode - in container");
-          this.toggleDarkMode();
-          break;
-      }
+    handleMessage(event) {
+      console.log("handleMessage():", event.data);
+      if (event.data === 'openModal') this.show = true;
+      if (event.data === 'closeModal') this.closeModal();
+      if (event.data === 'toggleDarkMode') this.toggleDarkMode();
     },
     closeModal() {
-      // console.log("closeModal function in container");
-
-    }, beforeDestroy() {
-      window.removeEventListener('message', this.receiveMessage);
+      this.show = false;
     },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
@@ -59,6 +41,16 @@ export default {
     },
     handleDataFromChild(data) {
       console.log("Data: ", data.name);
+      switch (data.name) {
+        case 'closeModal':
+          this.show = false;
+          //console.log("closeModal - in container");
+          this.closeModal();
+          break;
+        case 'Monochrom färg':
+          this.toggleDarkMode();
+          break;
+      }
     }
   }
 };

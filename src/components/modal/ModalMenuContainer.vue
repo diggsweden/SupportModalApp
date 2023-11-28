@@ -6,7 +6,7 @@
                 <button @click="closeModal">Stäng X</button>
             </div>
             <div>
-                <Accordion :items="items" @subItemClick="handleSubItemClick"/>
+                <Accordion :items="items" @subItemClick="handleSubItemClick" />
             </div>
         </div>
     </div>
@@ -21,32 +21,24 @@ export default {
     components: {
         Accordion
     },
-    props: ['message'],
+
     data() {
         return {
-            close: 'close modal',
             items: Items
         }
     },
     methods: {
         closeModal() {
-           // console.log("closeModal from container");
-            this.sendDataToParent({name: 'closeModal'});
+            this.sendDataToParent({ name: 'closeModal' });
         },
         sendDataToParent(subItem) {
-            //console.log("sendDataToParent from container", subItem);
             this.$emit('childToParent', subItem);
-        }, 
+        },
         handleSubItemClick(subItem) {
-            //console.log('Received from child:', subItem);
             this.sendDataToParent(subItem);
         }
-    },
-    beforeUnmount() {
-        // eslint-disable-next-line vue/no-deprecated-events-api
-       // this.$off('close')
-    },
-}
+    }
+};
 </script>
 
 <style scoped>

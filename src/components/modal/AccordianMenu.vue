@@ -30,23 +30,12 @@ export default {
             opened: null
         }
     },
-    created() {
-        console.log('items:', this.items);
-    },
     methods: {
         toggle(index) {
-           // console.log('toggle method called with index:', index);
             this.opened = this.opened === index ? null : index
         },
         handleClick(subItem) {
-           // console.log('Clicked on:', subItem.name);
-            // Handle click event here
             this.$emit('subItemClick', subItem);
-            
-        },
-        sendEventToParent() {
-          //  console.log("sendEvent from accordian");
-            this.$emit('accordianEventTocontainer', 'Open Chat');
         }
     },
     watch: {

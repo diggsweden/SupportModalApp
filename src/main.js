@@ -16,5 +16,4 @@ app.config.globalProperties.emitter = emitter
 
 app.use(createPinia())
 
-
 app.mount('#app')

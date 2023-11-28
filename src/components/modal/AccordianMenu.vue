@@ -35,17 +35,23 @@ export default {
     },
     methods: {
         toggle(index) {
-            console.log('toggle method called with index:', index);
+           // console.log('toggle method called with index:', index);
             this.opened = this.opened === index ? null : index
         },
         handleClick(subItem) {
-            console.log('Clicked on:', subItem.name);
+           // console.log('Clicked on:', subItem.name);
             // Handle click event here
+            this.$emit('subItemClick', subItem);
+            
+        },
+        sendEventToParent() {
+          //  console.log("sendEvent from accordian");
+            this.$emit('accordianEventTocontainer', 'Open Chat');
         }
     },
     watch: {
         opened(newVal, oldVal) {
-            console.log('opened changed from', oldVal, 'to', newVal);
+           // console.log('opened changed from', oldVal, 'to', newVal);
         },
     },
     computed: {

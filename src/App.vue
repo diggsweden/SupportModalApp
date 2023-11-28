@@ -1,5 +1,6 @@
 <template>
-  <ModalMenuContainer :message="message" @postMessage="handlePostMessage" ></ModalMenuContainer>
+  <ModalMenuContainer :message="message" @childToParent="handleDataFromChild" @postMessage="receiveMessage"
+    @close="closeModal"></ModalMenuContainer>
 </template>
 
 
@@ -10,35 +11,44 @@ export default {
   name: 'App',
   components: {
     ModalMenuContainer
-  }, 
+  },
   data() {
     return {
-      show: true,
+      show: false,
       isDarkMode: false,
-      message: 'close modal'
+      message: 'closeModal'
     }
   },
   created() {
     window.addEventListener('message', this.receiveMessage, false);
   },
+  beforeUnmount() {
+    window.removeEventListener('message', this.receiveMessage);
+  },
+  unmounted() {
+    window.removeEventListener('message', this.receiveMessage);
+  },
   methods: {
     receiveMessage(event) {
-      console.log(event.data);
-      switch(event.data) {
+      console.log("recieveMessage():", event.data);
+      switch (event.data) {
         case 'openModal':
           this.show = true;
           break;
         case 'closeModal':
           this.show = false;
+          //console.log("closeModal - in container");
+          this.closeModal();
           break;
         case 'toggleDarkMode':
+          //console.log("toggleDarkMode - in container");
           this.toggleDarkMode();
           break;
       }
     },
     closeModal() {
-      this.show = false;
-      window.parent.postMessage('closeModal', '*');
+      // console.log("closeModal function in container");
+
     }, beforeDestroy() {
       window.removeEventListener('message', this.receiveMessage);
     },
@@ -46,9 +56,11 @@ export default {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle('dark', this.isDarkMode);
       window.parent.postMessage('toggleDarkMode', '*');
+    },
+    handleDataFromChild(data) {
+      console.log("Data: ", data.name);
     }
   }
-
 };
 
 

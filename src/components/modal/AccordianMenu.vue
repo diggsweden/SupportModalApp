@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import Config from '../../Config';
+
 export default {
     props: {
         items: {
@@ -30,12 +32,23 @@ export default {
             opened: null
         }
     },
+    mounted() {
+        console.log("mounted(): ", this.items);
+        console.log("mounted(): ", this.Config);
+    },
     methods: {
         toggle(index) {
             this.opened = this.opened === index ? null : index
         },
         handleClick(subItem) {
             this.$emit('subItemClick', subItem);
+        },
+        shouldShowSubItem(subItem) {
+            if (subItem.name === 'Monochrom färg') {
+                console.log("shouldShowSubItem(): ", Config.features.acceccessability.dark_mode);
+                return Config.features.acceccessability.dark_mode;
+            }
+            return true;
         }
     },
     watch: {

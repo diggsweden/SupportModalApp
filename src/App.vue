@@ -3,7 +3,6 @@
     @close="closeModal"></ModalMenuContainer>
 </template>
 
-
 <script>
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 

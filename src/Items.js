@@ -1,10 +1,19 @@
+/* eslint-disable no-undef */
+import chatIcon from '@/assets/chat-smile-2-line.svg';
+import supportIcon from '@/assets/customer-service-2-fill.svg';
+import faqIcon from '@/assets/questionnaire-line.svg';
+import contactIcon from '@/assets/contacts-line.svg';
+
+
+/*
 export default [
     {
         title: 'Support',
         content: [
-            { name: 'Öppna Chatten', icon: 'chat icon', show: true },
-            { name: 'Till Support Sidan', icon: 'support icon', show: true },
-            { name: 'Till Frågor och Svar', icon: 'faq icon', show: true },
+            { name: 'Öppna Chatten', svgIcon: chatIcon, show: true },
+    { name: 'Till Support Sidan', svgIcon: supportIcon, show: true },
+    { name: 'Till Frågor och Svar', svgIcon: faqIcon, show: true },
+    { name: 'Kontakta Oss', svgIcon: contactIcon, show: true }
         ]
     },
     {
@@ -26,3 +35,11 @@ export default [
         ]
     }
 ];
+
+*/
+export default [
+    { name: 'Öppna Chatten', svgIcon: chatIcon, show: true },
+    { name: 'Till Support Sidan', svgIcon: supportIcon, show: true },
+    { name: 'Till Frågor och Svar', svgIcon: faqIcon, show: true },
+    { name: 'Kontakta Oss', svgIcon: contactIcon, show: true }
+  ]

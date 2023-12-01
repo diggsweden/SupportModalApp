@@ -1,12 +1,14 @@
 <template>
-    <div class="modal">
+    <div class="rectangle">
         <div class="raised-card">
             <div class="modal-header">
                 <h3> Hjälpmeny </h3>
-                <button @click="closeModal">Stäng X</button>
+                <button class="close-button" @click="closeModal">Stäng 
+                    <img :src="closeIcon" alt="Close Icon" class="close-icon">
+                </button>
             </div>
             <div>
-                <Accordion :items="items" @subItemClick="handleSubItemClick" />
+                <Accordion :items="items" @subItemClick="handleSubItemClick" @itemClick="handleSubItemClick"  />
             </div>
         </div>
     </div>
@@ -15,6 +17,7 @@
 <script>
 import Accordion from './AccordianMenu.vue'
 import Items from '../../Items';
+import closeIcon from '@/assets/close-line.svg';
 
 export default {
     name: 'ModalMenuContainer',
@@ -24,7 +27,8 @@ export default {
 
     data() {
         return {
-            items: Items
+            items: Items,
+            closeIcon: closeIcon
         }
     },
     methods: {
@@ -36,39 +40,51 @@ export default {
         },
         handleSubItemClick(subItem) {
             this.sendDataToParent(subItem);
-        }
+        },
+
     }
 };
 </script>
 
 <style scoped>
-.header {
-    display: flex;
-    justify-content: space-between;
+
+
+.close-button {
+    display: inline-flex;
+    padding: 3px 4px 3px 8px;
+    justify-content: center;
     align-items: center;
-}
-
-.dark-grey {
-    background-color: #4c614d;
-    /* parent component color */
-    color: #fff;
-}
-
+    gap: 4px;
+  }
+  
 .raised-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* Add other styles as needed */
 }
 
-.modal {
-    width: 300px;
-    height: auto;
+.rectangle {
+    width: 266px;
+    height: 250px;
+    flex-shrink: 0;
+    color: var(--neutrals-dark, #080909);
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 23px;
 }
 
-.title {
-    cursor: pointer;
-    margin: 10px 0;
-
+.close-button {
+    display: flex;
+    align-items: center;
 }
+
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
 
 .modal-header {
     position: relative;
@@ -85,7 +101,6 @@ export default {
 
 .modal-header h1 {
     font-weight: bold;
-
 }
 
 .modal-header button {
@@ -93,9 +108,5 @@ export default {
     right: 10px;
 }
 
-.accordion {
-    margin: 10px 0;
-    /* Add other styles as needed */
-}
 </style>
 ```

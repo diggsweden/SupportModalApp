@@ -23,8 +23,7 @@
 import Accordion from './AccordianMenu.vue'
 import Items from '../../Items'
 import closeIcon from '@/assets/close-line.svg'
-import Config from '../../Config.js';
-
+import Config from '../../Config.js'
 
 export default {
   name: 'ModalMenuContainer',
@@ -40,17 +39,22 @@ export default {
   },
   mounted() {
     // Traverse the Items array
-  this.items = this.items.map(item => {
-    // Check if the Config object, its features, and tillgänglighet attributes are defined
-    if (Config && Config.config && Config.config.features && Config.config.features.tillgänglighet) {
-      // Check if the item's name exists in the Config object's tillgänglighet attributes
-      if (Config.config.features.tillgänglighet[item.name] !== undefined) {
-        // Set the show attribute to the value of the corresponding tillgänglighet attribute
-        item.show = Config.config.features.tillgänglighet[item.name];
+    this.items = this.items.map((item) => {
+      // Check if the Config object, its features, and tillgänglighet attributes are defined
+      if (
+        Config &&
+        Config.config &&
+        Config.config.features &&
+        Config.config.features.tillgänglighet
+      ) {
+        // Check if the item's name exists in the Config object's tillgänglighet attributes
+        if (Config.config.features.tillgänglighet[item.name] !== undefined) {
+          // Set the show attribute to the value of the corresponding tillgänglighet attribute
+          item.show = Config.config.features.tillgänglighet[item.name]
+        }
       }
-    }
-    return item;
-    });
+      return item
+    })
   },
   methods: {
     closeModal() {

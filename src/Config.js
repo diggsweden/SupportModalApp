@@ -8,7 +8,7 @@ export default {
                 "Text Storlek": true,
                 "Avstånd": true,
                 "Till Support Sidan": true,
-                "Till Frågor §och Svar": true,
+                "Till Frågor och Svar": true,
                 "Kontakta Oss": true,
                 "cursor": true,
                 "highlight": false,

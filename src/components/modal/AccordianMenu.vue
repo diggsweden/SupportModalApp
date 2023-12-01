@@ -3,7 +3,7 @@
     <div class="accordion-item" v-for="(item, index) in plainItems" :key="index">
         <div class="icon-list" @click="item.content && item.content.length > 0 ? toggle(index) : handleItemClick(item)">
         <img v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon">
-        {{ item.name }}
+        {{ item.name ? item.name : item.title }}
         <!--i :class="opened === index ? 'arrow up icon' : 'arrow down icon'"></i-->
       </div>
       <transition name="slide-fade">
@@ -11,7 +11,7 @@
           <li
             v-for="(subItem, subIndex) in item.content"
             :key="subIndex"
-            @click="handleClick(subItem)"
+            @click="handleSubItemClick(subItem)"
           >
             <i :class="subItem.icon"></i>
             {{ subItem.name }}
@@ -38,8 +38,8 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted(): ', this.items)
-    console.log('mounted(): ', this.Config)
+   // console.log('mounted(): ', this.items)
+   // console.log('mounted(): ', this.Config)
   },
   methods: {
     async getIcon(iconPath) {
@@ -50,11 +50,10 @@ export default {
     toggle(index) {
       this.opened = this.opened === index ? null : index
     },
-    handleClick(subItem) {
+    handleSubItemClick(subItem) {
       this.$emit('subItemClick', subItem)
     },
      handleItemClick(item) {
-      console.log('handleItemClick(): ', item.name);
       this.$emit('itemClick', item.name);
     },
 
@@ -73,7 +72,8 @@ export default {
   },
   computed: {
     plainItems() {
-      return this.items.map((item) => ({ ...item }))
+      //return this.items.map((item) => ({ ...item }))
+      return this.items.filter(item => item.show);
     }
   }
 }
@@ -81,7 +81,8 @@ export default {
 
 <style scoped>
 .icon-list {
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     padding: 10px 12px;
     justify-content: center;
     align-items: center;
@@ -93,33 +94,26 @@ export default {
  /* box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.2); */
 }
 
-.content {
-  padding: 1rem;
-  background-color: #f5f5f5;
-  border: 1px solid #e5e5e5;
-  border-top: none;
-}
+.accordion-item ul {
+    display: inline-flex;
+    padding: 10px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .accordion-item ul li {
+    display: inline-flex;
+    padding: 10px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .accordion-item ul li:first-child {
+    border-top: none;
+  }
 
-.custom-content {
-  padding: 1rem;
-  background-color: #f5f5f5;
-  border: 1px solid #e5e5e5;
-  border-top: none;
-}
-
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-
-.slide-fade-leave-active {
-
-}
-
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
-}
 
 ul {
  display: inline-flex;
@@ -138,10 +132,6 @@ li {
 }
 li:hover {
   /*background-color: rgb(125, 128, 122);*/
-}
-.arrow {
-  color: green;
-  /* Add other styles as needed */
 }
 .accordion-item {
  

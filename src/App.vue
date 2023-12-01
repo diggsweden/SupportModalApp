@@ -4,6 +4,7 @@
 </template>
 
 <script>
+
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 
 export default {
@@ -39,7 +40,7 @@ export default {
       window.parent.postMessage('toggleDarkMode', '*');
     },
     handleDataFromChild(data) {
-      console.log("Data: ", data);
+      console.log("Send to Wrapper: ", data);
       switch (data.name) {
         case 'closeModal':
           this.show = false;

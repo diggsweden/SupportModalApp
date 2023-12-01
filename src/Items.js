@@ -4,6 +4,16 @@ import supportIcon from '@/assets/customer-service-2-fill.svg';
 import faqIcon from '@/assets/questionnaire-line.svg';
 import contactIcon from '@/assets/contacts-line.svg';
 
+  /* POC 1 */
+
+  export default [
+    { name: 'Öppna Chatten', svgIcon: chatIcon, show: true },
+    { name: 'Till Support Sidan', svgIcon: supportIcon, show: true },
+    { name: 'Till Frågor och Svar', svgIcon: faqIcon, show: true },
+    { name: 'Kontakta Oss', svgIcon: contactIcon, show: true }
+  ]
+ 
+  /* POC 2 */
 
 /*
 export default [
@@ -37,9 +47,3 @@ export default [
 ];
 
 */
-export default [
-    { name: 'Öppna Chatten', svgIcon: chatIcon, show: true },
-    { name: 'Till Support Sidan', svgIcon: supportIcon, show: true },
-    { name: 'Till Frågor och Svar', svgIcon: faqIcon, show: true },
-    { name: 'Kontakta Oss', svgIcon: contactIcon, show: true }
-  ]

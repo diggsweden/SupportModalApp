@@ -2,12 +2,16 @@ export default {
     "version": "0.0.1",
     "config": {
         "features": {
-            "accessibility": {
-                "contrast": true,
-                "font_size": true,
-                "spacing": true,
+            "tillgänglighet": {
+                "Öppna Chatten": true,
+                "Kontrast": true,
+                "Text Storlek": true,
+                "Avstånd": true,
+                "Till Support Sidan": true,
+                "Till Frågor §och Svar": true,
+                "Kontakta Oss": true,
                 "cursor": true,
-                "highlight": true,
+                "highlight": false,
                 "dark_mode": true
             },
             "support": {

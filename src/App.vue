@@ -6,6 +6,7 @@
 <script>
 
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
+import PostMessageService from './services/PostMessageService.js'
 
 export default {
   name: 'App',
@@ -19,10 +20,14 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('message', this.handleMessage);
+    //window.addEventListener('message', this.handleMessage);
+    PostMessageService.registerHandler('message', this.handleMessage);
+    PostMessageService.listen();
   },
   unmounted() {
-    window.removeEventListener('message', this.handleMessage);
+   // window.removeEventListener('message', this.handleMessage);
+    PostMessageService.unlisten();
+    PostMessageService.removeHandler('message');
   },
   methods: {
     handleMessage(event) {
@@ -33,11 +38,13 @@ export default {
     },
     closeModal() {
       this.show = false;
+      PostMessageService.sendMessage('message', 'closeModal');
     },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
-      document.body.classList.toggle('dark', this.isDarkMode);
-      window.parent.postMessage('toggleDarkMode', '*');
+     /* document.body.classList.toggle('dark', this.isDarkMode);
+      window.parent.postMessage('toggleDarkMode', '*'); */
+      PostMessageService.sendMessage('toggleDarkMode', '*');
     },
     handleDataFromChild(data) {
       console.log("Send to Wrapper: ", data);

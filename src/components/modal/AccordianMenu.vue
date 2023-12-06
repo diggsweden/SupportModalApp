@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async getIcon(iconPath) {
-      let icon = await import('@/assets/' + iconPath)
+      let icon = await import(/* @vite-ignore */ '@/assets/' + iconPath)
       console.log('getIcon(): ', icon.default)
       return icon.default
     },

@@ -48,9 +48,9 @@ export default {
         Config.config.features.accessibility
       ) {
         // Check if the item's name exists in the Config object's accessibility attributes
-        if (Config.config.features.accessibility[item.name] !== undefined) {
+        if (Config.config.features.accessibility[item.nameEn] !== undefined) {
           // Set the show attribute to the value of the corresponding accessibility attribute
-          item.show = Config.config.features.accessibility[item.name]
+          item.show = Config.config.features.accessibility[item.nameEn]
         }
       }
       return item

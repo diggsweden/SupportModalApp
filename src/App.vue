@@ -39,7 +39,6 @@ export default {
       PostMessageService.sendMessage('closeModal')
     },
     redirectTo(url) {
-      console.log('Redirect to url: ', url)
       PostMessageService.sendMessage('redirectTo', url)
     },
     handleDataFromModalsChildComponent(data) {

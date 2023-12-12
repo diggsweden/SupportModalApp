@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Config from '../../Config'
 
 export default {
   props: {
@@ -33,9 +32,6 @@ export default {
       let icon = await import(/* @vite-ignore */ '@/assets/' + iconPath)
       console.log('getIcon(): ', icon.default)
       return icon.default
-    },
-    toggle(index) {
-      this.opened = this.opened === index ? null : index
     },
     handleItemClick(item) {
       this.$emit('itemClick', item)

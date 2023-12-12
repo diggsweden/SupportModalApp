@@ -1,6 +1,6 @@
 <template>
-  <div class="accordion">
-    <div class="accordion-item" v-for="(item, index) in plainItems" :key="index">
+  <div class="accordian">
+    <div class="accordian-item" v-for="(item, index) in plainItems" :key="index">
       <div class="icon-list" @click="handleItemClick(item)">
         <img v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
         {{ item.name }}
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-
 export default {
   props: {
     items: {
       type: Array,
-      required: true
+      required: true,
+      default: () => []
     }
   },
   data() {
@@ -61,7 +61,7 @@ export default {
   /* box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.2); */
 }
 
-.accordion-item ul {
+.accordian-item ul {
   display: inline-flex;
   padding: 10px 12px;
   justify-content: center;
@@ -69,7 +69,7 @@ export default {
   gap: 12px;
 }
 
-.accordion-item ul li {
+.accordian-item ul li {
   display: inline-flex;
   padding: 10px 12px;
   justify-content: center;
@@ -77,11 +77,11 @@ export default {
   gap: 12px;
 }
 
-.accordion-item ul li:first-child {
+.accordian-item ul li:first-child {
   border-top: none;
 }
 
-.accordion-item {
+.accordian-item {
   /* Add other styles as needed */
   display: inline-flex;
   padding: 10px 12px;

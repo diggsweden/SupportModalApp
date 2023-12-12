@@ -42,7 +42,6 @@ export default {
       PostMessageService.sendMessage('redirectTo', url)
     },
     handleDataFromModalsChildComponent(data) {
-      console.log('about to Send to Wrapper: ', data)
       switch (data.PostMessageEventName) {
         case 'closeModal':
           this.closeModal()

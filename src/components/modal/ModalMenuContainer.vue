@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.sendDataToParent({ name: 'closeModal' })
+      this.sendDataToParent({ PostMessageEventName: 'closeModal' })
     },
     sendDataToParent(subItem) {
       console.log('sendDataToParent(): ', subItem)

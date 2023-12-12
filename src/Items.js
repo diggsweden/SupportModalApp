@@ -6,14 +6,32 @@ import contactIcon from '@/assets/contacts-line.svg'
 
 /* POC 1 */
 export default [
-    { name: 'Öppna Chatten', nameEn: 'OpenChat', svgIcon: chatIcon, show: true, PostMessageEventName: 'openChat' },
-    {
-        name: 'Till Support Sidan',
-        nameEn: 'ToSupportPage',
-        svgIcon: supportIcon,
-        show: true,
-        PostMessageEventName: 'toSupportPage'
-    },
-    { name: 'Till Frågor och Svar', nameEn: 'ToQuestionsandAnswers', svgIcon: faqIcon, show: true, PostMessageEventName: 'toFAQ' },
-    { name: 'Kontakta Oss', nameEn: 'ContactUs', svgIcon: contactIcon, show: true, PostMessageEventName: 'contactUs' }
+  {
+    name: 'Öppna Chatten',
+    nameEn: 'OpenChat',
+    svgIcon: chatIcon,
+    show: true,
+    PostMessageEventName: 'openChat'
+  },
+  {
+    name: 'Till Support Sidan',
+    nameEn: 'ToSupportPage',
+    svgIcon: supportIcon,
+    show: true,
+    PostMessageEventName: 'toSupportPage'
+  },
+  {
+    name: 'Till Frågor och Svar',
+    nameEn: 'ToQuestionsandAnswers',
+    svgIcon: faqIcon,
+    show: true,
+    PostMessageEventName: 'toFAQ'
+  },
+  {
+    name: 'Kontakta Oss',
+    nameEn: 'ContactUs',
+    svgIcon: contactIcon,
+    show: true,
+    PostMessageEventName: 'contactUs'
+  }
 ]

@@ -40,17 +40,17 @@ export default {
   mounted() {
     // Traverse the Items array
     this.items = this.items.map((item) => {
-      // Check if the Config object, its features, and tillgänglighet attributes are defined
+      // Check if the Config object, its features, and accessibility attributes are defined
       if (
         Config &&
         Config.config &&
         Config.config.features &&
-        Config.config.features.tillgänglighet
+        Config.config.features.accessibility
       ) {
-        // Check if the item's name exists in the Config object's tillgänglighet attributes
-        if (Config.config.features.tillgänglighet[item.name] !== undefined) {
-          // Set the show attribute to the value of the corresponding tillgänglighet attribute
-          item.show = Config.config.features.tillgänglighet[item.name]
+        // Check if the item's name exists in the Config object's accessibility attributes
+        if (Config.config.features.accessibility[item.name] !== undefined) {
+          // Set the show attribute to the value of the corresponding accessibility attribute
+          item.show = Config.config.features.accessibility[item.name]
         }
       }
       return item
@@ -61,6 +61,7 @@ export default {
       this.sendDataToParent({ name: 'closeModal' })
     },
     sendDataToParent(subItem) {
+      console.log('sendDataToParent(): ', subItem)
       this.$emit('childToParent', subItem)
     },
     handleSubItemClick(subItem) {

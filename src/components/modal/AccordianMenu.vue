@@ -6,21 +6,8 @@
         @click="item.content && item.content.length > 0 ? toggle(index) : handleItemClick(item)"
       >
         <img v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
-        {{ item.name ? item.name : item.title }}
-        <!--i :class="opened === index ? 'arrow up icon' : 'arrow down icon'"></i-->
+        {{ item.name }}
       </div>
-      <transition name="slide-fade">
-        <ul v-if="opened === index">
-          <li
-            v-for="(subItem, subIndex) in item.content"
-            :key="subIndex"
-            @click="handleSubItemClick(subItem)"
-          >
-            <i :class="subItem.icon"></i>
-            {{ subItem.name }}
-          </li>
-        </ul>
-      </transition>
     </div>
   </div>
 </template>

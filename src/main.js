@@ -7,7 +7,6 @@ import mitt from 'mitt'
 
 import App from './App.vue'
 
-
 const app = createApp(App)
 
 const emitter = mitt()

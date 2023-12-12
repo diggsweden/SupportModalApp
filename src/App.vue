@@ -1,10 +1,11 @@
 <template>
-  <ModalMenuContainer @childToParent="handleDataFromChild" 
-    @close="closeModal"></ModalMenuContainer>
+  <ModalMenuContainer
+    @childToParent="handleDataFromModalsChildComponent"
+    @close="closeModal"
+  ></ModalMenuContainer>
 </template>
 
 <script>
-
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 import PostMessageService from './services/PostMessageService.js'
 
@@ -16,57 +17,47 @@ export default {
   data() {
     return {
       show: false,
-      isDarkMode: false,
+      isDarkMode: false
     }
   },
   mounted() {
     //window.addEventListener('message', this.handleMessage);
-    PostMessageService.registerHandler('message', this.handleMessage);
-    PostMessageService.listen();
+    PostMessageService.registerHandler('message', this.handleMessage)
+    PostMessageService.listen()
   },
   unmounted() {
-   // window.removeEventListener('message', this.handleMessage);
-    PostMessageService.unlisten();
-    PostMessageService.removeHandler('message');
+    // window.removeEventListener('message', this.handleMessage);
+    PostMessageService.unlisten()
+    PostMessageService.removeHandler('message')
   },
   methods: {
     handleMessage(event) {
-      console.log("handleMessage():", event.data);
-      if (event.data === 'openModal') this.show = true;
-      if (event.data === 'closeModal') this.closeModal();
-      if (event.data === 'toggleDarkMode') this.toggleDarkMode();
+      console.log('handleMessage():', event.data)
     },
     closeModal() {
-      this.show = false;
-      PostMessageService.sendMessage('message', 'closeModal');
+      this.show = false
+      PostMessageService.sendMessage('closeModal')
     },
-    toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode;
-     /* document.body.classList.toggle('dark', this.isDarkMode);
-      window.parent.postMessage('toggleDarkMode', '*'); */
-      PostMessageService.sendMessage('toggleDarkMode', '*');
+    redirectTo(url) {
+      PostMessageService.sendMessage('redirectTo', url)
     },
-    handleDataFromChild(data) {
-      console.log("Send to Wrapper: ", data);
+    handleDataFromModalsChildComponent(data) {
+      console.log('Send to Wrapper: ', data)
       switch (data.name) {
         case 'closeModal':
-          this.show = false;
-          //console.log("closeModal - in container");
-          this.closeModal();
-          break;
-        case 'Monochrom färg':
-          this.toggleDarkMode();
-          break;
+          this.closeModal()
+          break
+        case 'contactUs':
+        case 'toSupportPage':
+        case 'toFAQ':
+          this.redirectTo(data.name)
+          break
+        default:
+          console.log('handleDataFromChildComponent(): ', data)
       }
     }
   }
-};
-
-
+}
 </script>
 
-
-
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -39,21 +39,24 @@ export default {
       PostMessageService.sendMessage('closeModal')
     },
     redirectTo(url) {
+      console.log('Redirect to url: ', url)
       PostMessageService.sendMessage('redirectTo', url)
     },
     handleDataFromModalsChildComponent(data) {
-      console.log('Send to Wrapper: ', data)
-      switch (data.name) {
+      console.log('about to Send to Wrapper: ', data)
+      switch (data.PostMessageEventName) {
         case 'closeModal':
           this.closeModal()
           break
         case 'contactUs':
         case 'toSupportPage':
         case 'toFAQ':
-          this.redirectTo(data.name)
+        case 'openChat':
+          this.redirectTo(data.PostMessageEventName)
           break
         default:
-          console.log('handleDataFromChildComponent(): ', data)
+          // console.log('handleDataFromChildComponent(): ', data)
+          break
       }
     }
   }

@@ -1,10 +1,7 @@
 <template>
   <div class="accordion">
     <div class="accordion-item" v-for="(item, index) in plainItems" :key="index">
-      <div
-        class="icon-list"
-        @click="item.content && item.content.length > 0 ? toggle(index) : handleItemClick(item)"
-      >
+      <div class="icon-list" @click="handleItemClick(item)">
         <img v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
         {{ item.name }}
       </div>
@@ -40,24 +37,8 @@ export default {
     toggle(index) {
       this.opened = this.opened === index ? null : index
     },
-    handleSubItemClick(subItem) {
-      this.$emit('subItemClick', subItem)
-    },
     handleItemClick(item) {
-      this.$emit('itemClick', item.name)
-    },
-
-    shouldShowSubItem(subItem) {
-      if (subItem.name === 'Monochrom färg') {
-        console.log('shouldShowSubItem(): ', Config.features.acceccessability.dark_mode)
-        return Config.features.acceccessability.dark_mode
-      }
-      return true
-    }
-  },
-  watch: {
-    opened(newVal, oldVal) {
-      // console.log('opened changed from', oldVal, 'to', newVal);
+      this.$emit('itemClick', item)
     }
   },
   computed: {

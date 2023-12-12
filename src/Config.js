@@ -3,10 +3,10 @@ export default {
   config: {
     features: {
       accessibility: {
-        Open_Chat: true,
-        To_support_page: true,
-        To_questions_and_answers: true,
-        Contact_us: true
+        OpenChat: true,
+        ToSupportPage: true,
+        ToQuestionsAndAnswers: true,
+        ContactUs: true
       }
     }
   }

@@ -78,13 +78,17 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--neutrals-midtone, #d4dadf);
 }
 
 .raised-card {
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* Add other styles as needed */
+  border-radius: 4px;
+  border: 1px solid var(--neutrals-highlight, #f8f9fb);
+  background: var(--neutrals-white, #fff);
+
+  /* dropShadow */
+  box-shadow: 0px 5px 12px 0px rgba(21, 25, 31, 0.2);
 }
 
 .rectangle {
@@ -111,19 +115,27 @@ export default {
 }
 
 .modal-header {
-  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   margin-top: 20px;
-  border-bottom: 1px solid #000;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px 0 10px 10px;
+  border-bottom: 1px solid #efefef;
+  font: 600 18px/26px Lato;
+  color: var(--neutrals-black, #15191f);
 }
 
-.modal-header h1 {
-  font-weight: bold;
+.modal-header h3 {
+  width: 161px;
+  color: var(--neutrals-black, #15191f);
+  /* Body/text-md-semi */
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  /* 144.444% */
 }
 
 .modal-header button {

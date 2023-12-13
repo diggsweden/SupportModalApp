@@ -1,8 +1,9 @@
 <template>
-  <div class="accordian">
+  <div class="accordian-menu">
     <div class="accordian-item" v-for="(item, index) in plainItems" :key="index">
       <div class="icon-list" @click="handleItemClick(item)">
-        <img v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
+        <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
+
         {{ item.name }}
       </div>
     </div>
@@ -49,11 +50,11 @@ export default {
 <style scoped>
 .icon-list {
   display: flex;
-  flex-direction: row;
   padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
   gap: 12px;
+  color: var(--neutrals-dark, #4a5464);
+  font: 600 16px Lato;
+  cursor: pointer;
 }
 
 .icon-list:hover {
@@ -62,7 +63,7 @@ export default {
 }
 
 .accordian-item ul {
-  display: inline-flex;
+  display: flex;
   padding: 10px 12px;
   justify-content: center;
   align-items: center;
@@ -74,7 +75,6 @@ export default {
   padding: 10px 12px;
   justify-content: center;
   align-items: center;
-  gap: 12px;
 }
 
 .accordian-item ul li:first-child {
@@ -82,11 +82,10 @@ export default {
 }
 
 .accordian-item {
-  /* Add other styles as needed */
-  display: inline-flex;
   padding: 10px 12px;
   justify-content: center;
   align-items: center;
   gap: 12px;
+  border-radius: 4px;
 }
 </style>

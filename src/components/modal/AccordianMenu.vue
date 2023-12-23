@@ -1,7 +1,7 @@
 <template>
   <div class="accordian-menu">
     <div class="accordian-item" v-for="(item, index) in plainItems" :key="index">
-      <div class="icon-list" @click="handleItemClick(item)">
+      <div class="icon-list" @click="handleItemClick(item)" ref="iconList" tabindex="0">
         <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
 
         {{ item.name }}
@@ -25,8 +25,7 @@ export default {
     }
   },
   mounted() {
-    // console.log('mounted(): ', this.items)
-    // console.log('mounted(): ', this.Config)
+    this.$refs.iconList[0].focus();
   },
   methods: {
     async getIcon(iconPath) {

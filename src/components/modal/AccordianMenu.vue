@@ -87,7 +87,31 @@ button,
 }
 
 .icon-list:hover {
-  cursor: pointer;
-  color: var(--neutrals-dark, #15191f);
+  display: inline-flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  border-radius: 4px;
+  background: var(--Primary-highlight, #e6ecf2);
+}
+
+.icon-list:active {
+  /* active state styles */
+}
+
+.icon-list:focus {
+  display: inline-flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  border: 2px solid var(--Primary-shade, #124562);
+}
+
+.icon-list:disabled {
+  /* disabled state styles */
 }
 </style>

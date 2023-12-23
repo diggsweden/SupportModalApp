@@ -98,6 +98,51 @@ button,
   line-height: 23px; /* 143.75% */
 }
 
+.close-button:hover {
+  display: inline-flex;
+  padding: 3px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 4px;
+  background: var(--Primary-midtone, #b6c7d7);
+}
+
+.close-button:active {
+  display: inline-flex;
+  padding: 3px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 4px;
+  background: var(--Primary-midtone, #b6c7d7);
+}
+
+.close-button:focus {
+  display: inline-flex;
+  padding: 3px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  border: 3px solid var(--Primary-shade, #124562);
+  background: var(--Primary-highlight, #e6ecf2);
+}
+
+.close-button:disabled {
+  display: inline-flex;
+  padding: 3px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border-radius: 4px;
+  border: 1px solid var(--Neutrals-midtone, #d4dadf);
+  background: var(--Neutrals-midtone, #d4dadf);
+}
+
 .rectangle {
   width: 266px;
   height: 250px;

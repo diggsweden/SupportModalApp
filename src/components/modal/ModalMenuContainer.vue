@@ -72,6 +72,22 @@ export default {
 </script>
 
 <style scoped>
+button {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: visible;
+  text-transform: none;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
 .close-button {
   display: inline-flex;
   padding: 3px 4px 3px 8px;
@@ -92,15 +108,16 @@ export default {
 }
 
 .rectangle {
-  width: 266px;
+  width: 286px;
   height: 250px;
+
   flex-shrink: 0;
-  color: var(--neutrals-dark, #080909);
-  font-family: Lato;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 23px;
+  border-radius: 4px;
+  border: 1px solid var(--Neutrals-highlight, #f8f9fb);
+  background: var(--Neutrals-white, #fff);
+
+  /* dropShadow */
+  box-shadow: 0px 5px 12px 0px rgba(21, 25, 31, 0.2);
 }
 
 .close-button {
@@ -120,6 +137,7 @@ export default {
   align-items: center;
   position: relative;
   margin-top: 20px;
+  margin-left: 20px;
   padding: 10px 0 10px 10px;
   border-bottom: 1px solid #efefef;
   font: 600 18px/26px Lato;

@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted() {
-    this.$refs.iconList[0].focus();
+    this.$refs.iconList[0].focus()
   },
   methods: {
     async getIcon(iconPath) {
@@ -47,18 +47,34 @@ export default {
 </script>
 
 <style scoped>
+button {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: visible;
+  text-transform: none;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
 .icon-list {
-  display: flex;
-  padding: 10px 12px;
-  gap: 12px;
   color: var(--neutrals-dark, #4a5464);
   font: 600 16px Lato;
   cursor: pointer;
+  display: flex;
+  padding: 10px 12px;
+  gap: 12px;
 }
 
 .icon-list:hover {
   cursor: pointer;
-  /* box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.2); */
+  color: var(--neutrals-dark, #15191f);
 }
 
 .accordian-item ul {

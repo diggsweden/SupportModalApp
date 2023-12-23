@@ -186,6 +186,7 @@ button,
   /* Body/text-md-semi */
   font-family: Lato;
   font-size: 18px;
+  margin-left: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 26px; /* 144.444% */

@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <div
-      class="icon-list"
-      v-for="(item, index) in plainItems"
-      :key="index"
-      @click="handleItemClick(item)"
-      ref="iconList"
-      tabindex="0"
-    >
-      <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
-      {{ item.name }}
+  <div
+    class="icon-list"
+    v-for="(item, index) in plainItems"
+    :key="index"
+    @click="handleItemClick(item)"
+    ref="iconList"
+    tabindex="0"
+  >
+    <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
+    <div class="icon-text">
+      <div class="icon-title">{{ item.name }}</div>
     </div>
   </div>
 </template>
@@ -70,19 +70,9 @@ button,
 .icon-list {
   display: inline-flex;
   padding: 10px 12px;
-
+  justify-content: center;
   align-items: center;
   gap: 12px;
-  width: 100%;
-
-  color: var(--Neutrals-dark, #4a5464);
-  /* Body/text-base-semi */
-  font-family: Lato;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 23px; /* 143.75% */
-
   border-radius: 4px;
 }
 
@@ -95,10 +85,18 @@ button,
 
   border-radius: 4px;
   background: var(--Primary-highlight, #e6ecf2);
+  width: 100%;
 }
 
 .icon-list:active {
-  /* active state styles */
+  display: inline-flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  background: var(--Primary-highlight, #e6ecf2);
+  width: 100%;
 }
 
 .icon-list:focus {
@@ -109,9 +107,21 @@ button,
   gap: 12px;
   border-radius: 4px;
   border: 2px solid var(--Primary-shade, #124562);
+  width: 100%;
 }
 
 .icon-list:disabled {
   /* disabled state styles */
+}
+
+.icon-text {
+  color: var(--Neutrals-dark, #4a5464);
+
+  /* Body/text-base-semi */
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 23px; /* 143.75% */
 }
 </style>

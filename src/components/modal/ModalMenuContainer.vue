@@ -1,21 +1,13 @@
 <template>
   <div class="rectangle">
-    <div class="raised-card">
-      <div class="modal-header">
-        <h3>Hjälpmeny</h3>
-        <button class="close-button" @click="closeModal">
-          Stäng
-          <img :src="closeIcon" alt="Close Icon" class="close-icon" />
-        </button>
-      </div>
-      <div>
-        <Accordion
-          :items="items"
-          @subItemClick="handleSubItemClick"
-          @itemClick="handleSubItemClick"
-        />
-      </div>
+    <div class="modal-header">
+      <div class="helppmeny">Hjälpmeny</div>
+      <button class="close-button" @click="closeModal">
+        Stäng
+        <img :src="closeIcon" alt="Close Icon" class="close-icon" />
+      </button>
     </div>
+    <Accordion :items="items" @subItemClick="handleSubItemClick" @itemClick="handleSubItemClick" />
   </div>
 </template>
 
@@ -96,19 +88,18 @@ button,
   gap: 4px;
   border-radius: 4px;
   border: 1px solid var(--neutrals-midtone, #d4dadf);
-}
 
-.raised-card {
-  border-radius: 4px;
-  border: 1px solid var(--neutrals-highlight, #f8f9fb);
-  background: var(--neutrals-white, #fff);
-
-  /* dropShadow */
-  box-shadow: 0px 5px 12px 0px rgba(21, 25, 31, 0.2);
+  color: var(--Neutrals-dark, #4a5464);
+  text-align: right;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 23px; /* 143.75% */
 }
 
 .rectangle {
-  width: 286px;
+  width: 266px;
   height: 250px;
 
   flex-shrink: 0;
@@ -137,23 +128,22 @@ button,
   align-items: center;
   position: relative;
   margin-top: 20px;
-  margin-left: 20px;
+
   padding: 10px 0 10px 10px;
   border-bottom: 1px solid #efefef;
   font: 600 18px/26px Lato;
   color: var(--neutrals-black, #15191f);
 }
 
-.modal-header h3 {
-  width: 161px;
-  color: var(--neutrals-black, #15191f);
+.helppmeny {
+  color: var(--Neutrals-black, #15191f);
+
   /* Body/text-md-semi */
   font-family: Lato;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 26px;
-  /* 144.444% */
+  line-height: 26px; /* 144.444% */
 }
 
 .modal-header button {

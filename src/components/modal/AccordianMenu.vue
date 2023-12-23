@@ -1,11 +1,15 @@
 <template>
-  <div class="accordian-menu">
-    <div class="accordian-item" v-for="(item, index) in plainItems" :key="index">
-      <div class="icon-list" @click="handleItemClick(item)" ref="iconList" tabindex="0">
-        <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
-
-        {{ item.name }}
-      </div>
+  <div>
+    <div
+      class="icon-list"
+      v-for="(item, index) in plainItems"
+      :key="index"
+      @click="handleItemClick(item)"
+      ref="iconList"
+      tabindex="0"
+    >
+      <img class="icon-image" v-if="item.svgIcon" :src="item.svgIcon" alt="Menu Icon" />
+      {{ item.name }}
     </div>
   </div>
 </template>
@@ -64,43 +68,26 @@ button,
 }
 
 .icon-list {
-  color: var(--neutrals-dark, #4a5464);
-  font: 600 16px Lato;
-  cursor: pointer;
-  display: flex;
+  display: inline-flex;
   padding: 10px 12px;
+
+  align-items: center;
   gap: 12px;
+  width: 100%;
+
+  color: var(--Neutrals-dark, #4a5464);
+  /* Body/text-base-semi */
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 23px; /* 143.75% */
+
+  border-radius: 4px;
 }
 
 .icon-list:hover {
   cursor: pointer;
   color: var(--neutrals-dark, #15191f);
-}
-
-.accordian-item ul {
-  display: flex;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.accordian-item ul li {
-  display: inline-flex;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-}
-
-.accordian-item ul li:first-child {
-  border-top: none;
-}
-
-.accordian-item {
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  border-radius: 4px;
 }
 </style>

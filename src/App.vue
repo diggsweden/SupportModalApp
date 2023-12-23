@@ -80,4 +80,11 @@ button,
 [type='submit'] {
   -webkit-appearance: button;
 }
+
+<style > #app {
+  max-width: 266px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
 </style>

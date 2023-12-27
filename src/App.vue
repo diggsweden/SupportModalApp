@@ -8,6 +8,7 @@
 <script>
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 import PostMessageService from './services/PostMessageService.js'
+import './assets/main.css'
 
 export default {
   name: 'App',
@@ -62,29 +63,28 @@ export default {
 </script>
 
 <style scoped>
-/**
-* Reset Button
-*/
-button {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: visible;
-  text-transform: none;
-}
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
-<style > #app {
+#app {
   max-width: 266px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+}
+
+:root {
+  /* light mode colors */
+  --disabled-background-color: #cccccc;
+  --disabled-text-color: #666666;
+}
+
+body.dark {
+  /* dark mode colors */
+  --disabled-background-color: #333333;
+  --disabled-text-color: #999999;
+}
+
+@media (max-width: 600px) {
+  .icon-list {
+    /* mobile styles */
+  }
 }
 </style>

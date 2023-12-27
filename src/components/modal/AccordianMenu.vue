@@ -51,35 +51,19 @@ export default {
 </script>
 
 <style scoped>
-button {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: visible;
-  text-transform: none;
-}
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
 .icon-list {
   display: inline-flex;
   padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
+  align-items: left;
   gap: 12px;
   border-radius: 4px;
+  width: 100%;
 }
 
 .icon-list:hover {
   display: inline-flex;
   padding: 10px 12px;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 12px;
 
@@ -112,16 +96,17 @@ button,
 
 .icon-list:disabled {
   /* disabled state styles */
+  background-color: var(--disabled-background-color);
+  color: var(--disabled-text-color);
 }
 
-.icon-text {
+body .icon-text {
   color: var(--Neutrals-dark, #4a5464);
-
   /* Body/text-base-semi */
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 23px; /* 143.75% */
+  line-height: 23px;
 }
 </style>

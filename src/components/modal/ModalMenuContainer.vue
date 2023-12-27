@@ -7,6 +7,7 @@
         <img :src="closeIcon" alt="Close Icon" class="close-icon" />
       </button>
     </div>
+    <div class="divider"></div>
     <Accordion :items="items" @subItemClick="handleSubItemClick" @itemClick="handleSubItemClick" />
   </div>
 </template>
@@ -64,22 +65,6 @@ export default {
 </script>
 
 <style scoped>
-button {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: visible;
-  text-transform: none;
-}
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
 .close-button {
   display: inline-flex;
   padding: 3px 4px 3px 8px;
@@ -96,6 +81,7 @@ button,
   font-style: normal;
   font-weight: 600;
   line-height: 23px; /* 143.75% */
+  gap: 12px;
 }
 
 .close-button:hover {
@@ -172,7 +158,6 @@ button,
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  margin-top: 20px;
 
   padding: 10px 0 10px 10px;
   border-bottom: 1px solid #efefef;
@@ -195,6 +180,17 @@ button,
 .modal-header button {
   position: absolute;
   right: 10px;
+}
+
+.divider {
+  width: 266px;
+  height: 0px;
+  stroke-width: 1px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  stroke: var(--Neutrals-light, #efefef);
 }
 </style>
 ```

@@ -84,6 +84,7 @@ export default {
 }
 
 .icon-list:focus {
+
   display: inline-flex;
   padding: 10px 12px;
   justify-content: center;

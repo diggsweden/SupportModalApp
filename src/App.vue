@@ -8,7 +8,9 @@
 <script>
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 import PostMessageService from './services/PostMessageService.js'
+
 import './assets/main.css'
+
 
 export default {
   name: 'App',
@@ -58,6 +60,7 @@ export default {
           break
       }
     }
+
   }
 }
 </script>
@@ -85,6 +88,9 @@ body.dark {
 @media (max-width: 600px) {
   .icon-list {
     /* mobile styles */
+
   }
 }
-</style>
+</script>
+
+<style scoped></style>

@@ -73,7 +73,6 @@ export default {
   gap: 4px;
   border-radius: 4px;
   border: 1px solid var(--neutrals-midtone, #d4dadf);
-
   color: var(--Neutrals-dark, #4a5464);
   text-align: right;
   font-family: Lato;
@@ -90,7 +89,6 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 4px;
-
   border-radius: 4px;
   background: var(--Primary-midtone, #b6c7d7);
 }
@@ -101,7 +99,6 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 4px;
-
   border-radius: 4px;
   background: var(--Primary-midtone, #b6c7d7);
 }
@@ -123,7 +120,6 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 4px;
-
   border-radius: 4px;
   border: 1px solid var(--Neutrals-midtone, #d4dadf);
   background: var(--Neutrals-midtone, #d4dadf);
@@ -132,12 +128,10 @@ export default {
 .rectangle {
   width: 266px;
   height: 250px;
-
   flex-shrink: 0;
   border-radius: 4px;
   border: 1px solid var(--Neutrals-highlight, #f8f9fb);
   background: var(--Neutrals-white, #fff);
-
   /* dropShadow */
   box-shadow: 0px 5px 12px 0px rgba(21, 25, 31, 0.2);
 }
@@ -158,7 +152,6 @@ export default {
   justify-content: flex-start;
   align-items: center;
   position: relative;
-
   padding: 10px 0 10px 10px;
   border-bottom: 1px solid #efefef;
   font: 600 18px/26px Lato;
@@ -167,7 +160,6 @@ export default {
 
 .helppmeny {
   color: var(--Neutrals-black, #15191f);
-
   /* Body/text-md-semi */
   font-family: Lato;
   font-size: 18px;
@@ -189,8 +181,8 @@ export default {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-
   stroke: var(--Neutrals-light, #efefef);
 }
+
 </style>
-```
+

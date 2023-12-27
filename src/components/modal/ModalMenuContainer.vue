@@ -73,6 +73,7 @@ export default {
   gap: 4px;
   border-radius: 4px;
   border: 1px solid var(--neutrals-midtone, #d4dadf);
+
   color: var(--Neutrals-dark, #4a5464);
   text-align: right;
   font-family: Lato;
@@ -90,7 +91,7 @@ export default {
   align-items: center;
   gap: 4px;
   border-radius: 4px;
-  background: var(--Primary-midtone, #b6c7d7);
+  background: var(--Primary-highlight, #e6ecf2);
 }
 
 .close-button:active {
@@ -110,8 +111,9 @@ export default {
   align-items: center;
   gap: 4px;
   border-radius: 4px;
-  border: 3px solid var(--Primary-shade, #124562);
-  background: var(--Primary-highlight, #e6ecf2);
+
+  background: var(--Neutrals-highlight, #f8f9fb);
+  background: var(--Primary-midtone, #b6c7d7);
 }
 
 .close-button:disabled {
@@ -185,4 +187,4 @@ export default {
 }
 
 </style>
-
+```

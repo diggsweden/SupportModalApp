@@ -1,64 +1,67 @@
 <template>
   <div class="rectangle">
     <div class="modal-header">
-      <div class="helppmeny">Hjälpmeny</div>
-      <button class="close-button" @click="closeModal">
-        Stäng
+      <div class="title">{{ $t('header.title') }}</div>
+      <button class="close-button" @click="closeModal" tabindex="0">
+        {{ $t('header.close') }}
         <img :src="closeIcon" alt="Close Icon" class="close-icon" />
       </button>
     </div>
-    <div class="divider"></div>
-    <Accordion :items="items" @subItemClick="handleSubItemClick" @itemClick="handleSubItemClick" />
+    <AccordionMenu :items="items" @itemClick="handleItemClick" />
   </div>
 </template>
 
 <script>
-import Accordion from './AccordianMenu.vue'
-import Items from '../../Items'
+import AccordionMenu from './AccordionMenu.vue'
+import AvailableItems from '@/availableItems.js'
 import closeIcon from '@/assets/close-line.svg'
-import Config from '../../Config.js'
 
 export default {
   name: 'ModalMenuContainer',
   components: {
-    Accordion
+    AccordionMenu
   },
-
+  props: {
+    config: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  emits: ['sendMessage'],
   data() {
     return {
-      items: Items,
-      closeIcon: closeIcon
+      items: [],
+      closeIcon
     }
   },
   mounted() {
-    // Traverse the Items array
-    this.items = this.items.map((item) => {
-      // Check if the Config object, its features, and accessibility attributes are defined
-      if (
-        Config &&
-        Config.config &&
-        Config.config.features &&
-        Config.config.features.accessibility
-      ) {
-        // Check if the item's name exists in the Config object's accessibility attributes
-        if (Config.config.features.accessibility[item.nameEn] !== undefined) {
-          // Set the show attribute to the value of the corresponding accessibility attribute
-          item.show = Config.config.features.accessibility[item.nameEn]
-        }
-      }
-      return item
-    })
+    if (this.config && this.config.features && this.config.features.support) {
+      const supportItems = Object.keys(this.config.features.support);
+
+      this.items = AvailableItems.filter((item) => {
+        return supportItems.includes(item.id);
+      });
+    }
   },
   methods: {
     closeModal() {
-      this.sendDataToParent({ PostMessageEventName: 'closeModal' })
+      this.sendDataToParent({ action: 'closeModal' })
     },
-    sendDataToParent(subItem) {
-      console.log('sendDataToParent(): ', subItem)
-      this.$emit('childToParent', subItem)
+    sendDataToParent(data) {
+      this.$emit('sendMessage', data)
     },
-    handleSubItemClick(subItem) {
-      this.sendDataToParent(subItem)
+    handleItemClick(item) {
+      // Since the only available option is redirect, we can just send the PostMessageEventName.
+      let data = null;
+
+      if (item && Object.prototype.hasOwnProperty.call(item, 'id')) {
+        data = {
+          action: 'redirect',
+          data: item.id
+        };
+      }
+
+      this.sendDataToParent(data)
     }
   }
 }
@@ -73,6 +76,7 @@ export default {
   gap: 4px;
   border-radius: 4px;
   border: 1px solid var(--neutrals-midtone, #d4dadf);
+  background-color: transparent;
 
   color: var(--Neutrals-dark, #4a5464);
   text-align: right;
@@ -85,52 +89,19 @@ export default {
 }
 
 .close-button:hover {
-  display: inline-flex;
-  padding: 3px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 4px;
+  cursor: pointer;
   background: var(--Primary-highlight, #e6ecf2);
 }
 
 .close-button:active {
-  display: inline-flex;
-  padding: 3px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 4px;
   background: var(--Primary-midtone, #b6c7d7);
 }
 
 .close-button:focus {
-  display: inline-flex;
-  padding: 3px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 4px;
-
-  background: var(--Neutrals-highlight, #f8f9fb);
   background: var(--Primary-midtone, #b6c7d7);
 }
 
-.close-button:disabled {
-  display: inline-flex;
-  padding: 3px 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 4px;
-  border: 1px solid var(--Neutrals-midtone, #d4dadf);
-  background: var(--Neutrals-midtone, #d4dadf);
-}
-
 .rectangle {
-  width: 266px;
-  height: 250px;
-  flex-shrink: 0;
   border-radius: 4px;
   border: 1px solid var(--Neutrals-highlight, #f8f9fb);
   background: var(--Neutrals-white, #fff);
@@ -144,8 +115,8 @@ export default {
 }
 
 .close-icon {
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
   margin-right: 5px;
 }
 
@@ -154,18 +125,17 @@ export default {
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  padding: 10px 0 10px 10px;
+  padding: 12px;
   border-bottom: 1px solid #efefef;
   font: 600 18px/26px Lato;
   color: var(--neutrals-black, #15191f);
 }
 
-.helppmeny {
+.modal-header .title {
   color: var(--Neutrals-black, #15191f);
   /* Body/text-md-semi */
   font-family: Lato;
   font-size: 18px;
-  margin-left: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 26px; /* 144.444% */
@@ -175,16 +145,5 @@ export default {
   position: absolute;
   right: 10px;
 }
-
-.divider {
-  width: 266px;
-  height: 0px;
-  stroke-width: 1px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  stroke: var(--Neutrals-light, #efefef);
-}
-
 </style>
 ```

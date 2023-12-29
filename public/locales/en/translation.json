@@ -1,0 +1,15 @@
+{
+    "general": {
+        "loading": "Loading..."
+    },
+    "header": {
+        "title": "Help menu",
+        "close": "Close"
+    },
+    "support" : {
+        "to_support_page" : "To support",
+        "to_faq" : "To FAQ",
+        "contact_us" : "Contact us",
+        "open_chat" : "Open chat"
+    }
+}

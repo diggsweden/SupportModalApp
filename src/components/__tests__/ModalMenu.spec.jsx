@@ -1,31 +1,46 @@
 import { shallowMount } from '@vue/test-utils'
-import { it, expect } from 'vitest'
+import { it, expect, describe } from 'vitest'
 import ModalMenuContainer from '@/components/modal/ModalMenuContainer.vue'
 import assert from 'assert'
 
-it('modifies items array correctly in mounted()', () => {
-  // Setup
-  const wrapper = shallowMount(ModalMenuContainer)
-  // Test
-  // Add assertions here
-  //Test if the array is not empty after mounted
-  assert.notEqual(wrapper.vm.items.length, 0)
-  assert.equal(wrapper.vm.items[0].name, 'Öppna Chatten')
-  assert.equal(wrapper.vm.items[0].nameEn, 'OpenChat')
-})
+const getWrapper = () => {
+  return shallowMount(ModalMenuContainer, {
+    propsData: {
+      config: {
+        features: {
+          support: {
+            openChat: true
+          }
+        }
+      }
+    },
+  })
+}
 
-it('emits childToParent event with correct data in closeModal()', () => {
-  // Setup
-  const wrapper = shallowMount(ModalMenuContainer)
-  // Test if the event is emitted with the correct data when closeModal is called
-  wrapper.vm.closeModal()
-  expect(wrapper.emitted().childToParent[0]).toEqual([{ PostMessageEventName: 'closeModal' }])
-})
+describe('ModalMenuContainer.vue', () => {
+  it('modifies items array correctly in mounted()', () => {
+    // Setup
+    const wrapper = getWrapper()
+    // Test
+    // Add assertions here
+    //Test if the array is not empty after mounted
+    assert.notEqual(wrapper.vm.items.length, 0)
+    assert.equal(wrapper.vm.items[0].id, 'openChat')
+  })
 
-it('emits childToParent event with correct data in sendDataToParent()', () => {
-  // Setup
-  const wrapper = shallowMount(ModalMenuContainer)
-  // Test if the event is emitted with the correct data when sendDataToParent is called
-  wrapper.vm.sendDataToParent('test')
-  expect(wrapper.emitted().childToParent[0]).toEqual(['test'])
+  it('emits sendMessage event with correct data in closeModal()', () => {
+    // Setup
+    const wrapper = getWrapper()
+    // Test if the event is emitted with the correct data when closeModal is called
+    wrapper.vm.closeModal()
+    expect(wrapper.emitted().sendMessage[0]).toEqual([{ action: 'closeModal' }])
+  })
+
+  it('emits sendMessage event with correct data in sendDataToParent()', () => {
+    // Setup
+    const wrapper = getWrapper()
+    // Test if the event is emitted with the correct data when sendDataToParent is called
+    wrapper.vm.sendDataToParent('test')
+    expect(wrapper.emitted().sendMessage[0]).toEqual(['test'])
+  })
 })

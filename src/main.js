@@ -1,17 +1,12 @@
 import './assets/main.css'
-import 'semantic-ui-css/semantic.min.css'
 
 import { createApp } from 'vue'
-
-import mitt from 'mitt'
-
+import i18n from './i18n'
+import eventBus from './services/eventBus.js'
 import App from './App.vue'
 
-const app = createApp(App)
+const app = i18n(createApp(App))
 
-const emitter = mitt()
-
-app.config.globalProperties.emitter = emitter
-
+app.config.globalProperties.emitter = eventBus;
 
 app.mount('#app')

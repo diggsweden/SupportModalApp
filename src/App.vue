@@ -1,14 +1,22 @@
 <template>
-  <ModalMenuContainer
-    @childToParent="handleDataFromModalsChildComponent"
-    @close="closeModal"
-  ></ModalMenuContainer>
+  <div class="modal-container">
+    <ModalMenuContainer
+      v-if="config && Object.keys(config).length"
+      @sendMessage="handleSendMessage"
+      @close="closeModal"
+
+      :config="config"
+    />
+    <span v-else>{{ $t('general.loading') }}</span>
+  </div>
 </template>
 
 <script>
 import ModalMenuContainer from './components/modal/ModalMenuContainer.vue'
 import PostMessageService from './services/PostMessageService.js'
+import { debounce } from './utils/debounce.js';
 import './assets/main.css'
+import i18next from 'i18next'
 
 export default {
   name: 'App',
@@ -17,44 +25,78 @@ export default {
   },
   data() {
     return {
-      show: false,
+      config: {},
       isDarkMode: false
     }
   },
+
+  watch: {
+    config(newValue, oldValue) {
+      if (newValue !== oldValue && Object.keys(newValue).length) {
+        this.observer.observe(this.$el);
+        this.$el.focus();
+      }
+    },
+  },
+
+  created() {
+    const observer = new ResizeObserver(debounce((entries) => {
+      for (let entry of entries) {
+        const { offsetWidth: width, offsetHeight: height } = entry.target;
+
+        PostMessageService.sendMessage('resize', {
+          width: `${width}`,
+          height: `${height}`,
+        });
+      }
+    }), 50);
+
+    this.observer = observer;
+  },
   mounted() {
-    //window.addEventListener('message', this.handleMessage);
-    PostMessageService.registerHandler('message', this.handleMessage)
+    PostMessageService.registerHandler('load', this.loadEvent)
     PostMessageService.listen()
+    PostMessageService.sendMessage('ready')
   },
   unmounted() {
     // window.removeEventListener('message', this.handleMessage);
     PostMessageService.unlisten()
     PostMessageService.removeHandler('message')
   },
+  beforeUnmount() {
+    this.observer.disconnect();
+  },
   methods: {
-    handleMessage(event) {
-      console.log('handleMessage():', event.data)
+    contains(obj, keyString) {
+      return Object.prototype.hasOwnProperty.call(obj, keyString);
+    },
+    loadEvent(data) {
+      if (Object.keys(data).length) {
+        this.config = data;
+
+        if ((this.contains(data, 'context') && this.contains(data.context, 'locale')) || window.locale) {
+          const locale = data.context.locale || window.locale;
+          i18next.locale = locale;
+        }
+      }
+
+      PostMessageService.sendMessage('loaded');
     },
     closeModal() {
-      this.show = false
       PostMessageService.sendMessage('closeModal')
     },
     redirectTo(url) {
       PostMessageService.sendMessage('redirectTo', url)
     },
-    handleDataFromModalsChildComponent(data) {
-      switch (data.PostMessageEventName) {
+    handleSendMessage({ action, data }) {
+      switch (action) {
         case 'closeModal':
           this.closeModal()
           break
-        case 'contactUs':
-        case 'toSupportPage':
-        case 'toFAQ':
-        case 'openChat':
-          this.redirectTo(data.PostMessageEventName)
+        case 'redirect':
+          this.redirectTo(data)
           break
         default:
-          // console.log('handleDataFromChildComponent(): ', data)
           break
       }
     }
@@ -63,13 +105,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  max-width: 266px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-}
-
 :root {
   /* light mode colors */
   --disabled-background-color: #cccccc;
@@ -80,11 +115,5 @@ body.dark {
   /* dark mode colors */
   --disabled-background-color: #333333;
   --disabled-text-color: #999999;
-}
-
-@media (max-width: 600px) {
-  .icon-list {
-    /* mobile styles */
-  }
 }
 </style>

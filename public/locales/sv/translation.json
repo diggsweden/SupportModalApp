@@ -1,0 +1,15 @@
+{
+    "general": {
+        "loading": "Laddar..."
+    },
+    "header": {
+        "title": "Hjälpmeny",
+        "close": "Stäng"
+    },
+    "support" : {
+        "to_support_page" : "Till Support Sidan",
+        "to_faq" : "Till Frågor och Svar",
+        "contact_us" : "Kontakta Oss",
+        "open_chat" : "Öppna Chatten"
+    }
+}

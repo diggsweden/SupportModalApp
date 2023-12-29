@@ -1,13 +1,13 @@
 # Define variables
-CONTAINER_NAME = digg-help-modal
-IMAGE_NAME = digg-help-modal-image
+CONTAINER_NAME = digg-support-modal-app
+IMAGE_NAME = digg-support-modal-app-image
 
 # Build the Docker image
-build-helpmodal:
+build-supportmodalapp:
 	docker build -t $(IMAGE_NAME) .
 
 # Run the Docker container
-run-helpmodal:
+run-supportmodalapp:
 	docker run -d -p 8080:80 --rm --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 # Stop the Docker container

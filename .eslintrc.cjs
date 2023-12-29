@@ -8,6 +8,11 @@ module.exports = {
     'eslint:recommended',
     '@vue/eslint-config-prettier/skip-formatting'
   ],
+  globals: {
+    "global": "readonly",
+    'ResizeObserver': 'readonly',
+    '$t': 'readonly',
+  },
   overrides: [
     {
       files: [

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.

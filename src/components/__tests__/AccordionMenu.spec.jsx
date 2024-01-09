@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 import { shallowMount } from '@vue/test-utils'
 import { it, expect } from 'vitest'
 import AccordionMenu from '@/components/modal/AccordionMenu.vue'

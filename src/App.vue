@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+
+SPDX-License-Identifier: MIT
+-->
+
 <template>
   <div class="modal-container">
     <ModalMenuContainer

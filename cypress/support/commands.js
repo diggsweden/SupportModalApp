@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

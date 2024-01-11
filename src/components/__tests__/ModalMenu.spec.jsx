@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 import { shallowMount } from '@vue/test-utils'
 import { it, expect, describe } from 'vitest'
 import ModalMenuContainer from '@/components/modal/ModalMenuContainer.vue'

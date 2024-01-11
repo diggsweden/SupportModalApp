@@ -1,4 +1,13 @@
+<!--
+SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 # SupportModalApp
+
+[![REUSE status](https://api.reuse.software/badge/github.com/diggsweden/supportmodalapp)](https://api.reuse.software/info/github.com/diggsweden/supportmodalapp)
+
 
 Welcome to the SupportModalApp project! This repository houses a small web application designed to enhance user experience with interactive support actions.
 

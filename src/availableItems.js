@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 /* eslint-disable no-undef */
 import chatIcon from '@/assets/chat-smile-2-line.svg'
 import supportIcon from '@/assets/customer-service-2-fill.svg'

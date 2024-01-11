@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Digg - Agency for Digital Government
+//
+// SPDX-License-Identifier: MIT
+
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'

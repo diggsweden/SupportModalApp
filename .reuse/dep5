@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: supportmodalapp
+Source: https://github.com/diggsweden/supportmodalapp
+
+Files: package*.json **/*.json 
+Copyright: Digg - Agency for Digital Government
+License: CC0-1.0
+
+Files: public/*.ico src/assets/*.svg
+Copyright: Digg- Agency for Digital Government
+License: CC0-1.0
+
+# Third-party files
+
+Files: src/assets/Lato-Regular.ttf
+Copyright: tyPoland Lukasz Dziedzic
+License: OFL-1.1
